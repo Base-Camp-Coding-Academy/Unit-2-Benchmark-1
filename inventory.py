@@ -1,36 +1,24 @@
-"""
-Inventory System - Starter Code
-Fill in the TODOs to complete the dataclasses benchmark.
-"""
-
 from dataclasses import dataclass, field
-
 
 @dataclass
 class Product:
-    # TODO: add fields -> name (str), price (float),
-    # quantity (int, default 0), tags (list[str], safe default)
     name: str
     price: float
     quantity: int = 0
     tags: list[str] = field(default_factory=list)
-
+    
     def total_value(self):
-        # TODO: return price * quantity
         return self.price * self.quantity
-
-
+    
 @dataclass
 class Inventory:
-    # TODO: add field -> products (list[Product], safe default)
     products: list[Product] = field(default_factory=list)
 
     def add_product(self, product):
-        # TODO: append product to self.products
+
         self.products.append(product)
 
     def total_inventory_value(self):
-        # TODO: sum total_value() across all products
         total = 0
         for product in self.products:
             total += product.total_value()
@@ -38,13 +26,12 @@ class Inventory:
             
 
     def low_stock(self, threshold=5):
-        # TODO: return list of product names where quantity < threshold
         low = []
         for product in self.products:
             if product.quantity < threshold:
                 low.append(product.name)
         return low
-            
+    
 def main():
         inventory = Inventory()
         product1 = Product("Batman", 32.50, 4)
@@ -56,11 +43,6 @@ def main():
         print(f"Total Inventory Value: {inventory.total_inventory_value():.2f}")
         print(f"Low Stock Products {inventory.low_stock()}")
         print(product1)
+        
 if __name__ == "__main__":
-    # TODO:
-    # 1. Create an Inventory
-    # 2. Add at least 3 Products (vary quantities, at least one < 5)
-    # 3. Print total inventory value, formatted to 2 decimal places
-    # 4. Print low-stock product names
-    # 5. Print one Product directly to show the auto-generated __repr__
-    main()
+    main()    
